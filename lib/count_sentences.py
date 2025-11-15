@@ -7,6 +7,7 @@ class MyString:
   @property
   def value(self):
     return self._value
+  
   @value.setter
   def value(self, new_value):
     if not isinstance(new_value, str):
@@ -15,7 +16,7 @@ class MyString:
       self._value = new_value
 
   def is_sentence(self):
-    return self.value.endswith(".") 
+    return self.value.endswith(".")
   
   def is_question(self):
     return self.value.endswith("?")
@@ -24,8 +25,10 @@ class MyString:
     return self.value.endswith("!")
   
   def count_sentences(self):
-    import re
-    sentences = re.split(r'[.!?]+', self.value)
-    sentences = [s for s in sentences if s.strip()]
-    return len(sentences)
-  
+     temp = self._value.replace("!", ".").replace("?", ".")
+
+     parts = temp.split(".")
+
+     sentences = [p.strip() for p in parts if p.strip() != ""]
+
+     return len(sentences)
